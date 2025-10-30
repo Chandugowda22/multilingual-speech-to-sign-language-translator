@@ -1,0 +1,95 @@
+Build a full-stack web app called "Global Sign Communicator AI".
+
+🎯 GOAL:
+The app should let users speak or type text, then:
+
+Convert that text into ASL (American Sign Language) signs using a 3D avatar.
+After showing ASL, allow the user to select a target language (like Hindi, Spanish, German, Japanese, Korean, Chinese, French, Arabic, Italian, etc.).
+Translate the original text into that selected language.
+Use Text-to-Speech (TTS) to pronounce the translated text in that language.
+Display sign language of the translated text using the avatar (for example, KSL for Korean).
+Final result = Text/Speech → ASL → Translation → Target Text + Speech + Target Sign.
+⚙ TECH STACK:
+
+Frontend: HTML, CSS, JavaScript (use Three.js or Ready Player Me avatar for 3D animation)
+Backend: Python Flask
+Use gTTS for speech synthesis
+Use Google Translate API or “translate” Python library for multilingual translation
+Avatar signs can be represented by short animations or hand gesture GIFs (mock if real API unavailable)
+📁 PROJECT STRUCTURE:
+
+/backend/app.py → Flask backend with translation + speech endpoints
+/frontend/index.html → main interface with text box, mic input, avatar canvas, and language buttons
+/frontend/script.js → handles speech input, translation requests, and avatar animations
+/frontend/style.css → simple, modern responsive UI
+✅ REQUIRED FEATURES:
+
+“Speak or Type” input using SpeechRecognition (Web Speech API)
+Button for “Translate to [Language]”
+Display original text → ASL animation
+Display translated text → translated avatar animation
+Audio output of the translated text
+Responsive layout with center avatar, text panels, and language buttons.
+📦 REQUIREMENTS.TXT:
+Flask==2.3.2
+flask-cors
+gTTS
+translate
+requests
+
+💻 RUN COMMAND:
+python3 backend/app.py
+
+🌐 The app should open on a web browser with a simple UI:
+Header: "Global Sign Communicator AI"
+Main area: Avatar 3D display (ASL & KSL signs)
+Bottom: Input box + Mic + Language buttons
+Footer: “Made with ❤ by Chandu Gowda                                                       Here is a precise prompt to troubleshoot translation issues in your application:
+
+"Diagnose and fix translation functionality issues in my Global Sign Communicator AI app. Check backend /api/translate endpoint for errors, verify language codes and API request payloads, ensure proper response handling in frontend JavaScript, and validate if CORS and network requests succeed. Provide step-by-step debugging and code fixes."
+
+You’ve hit today’s free limit
+Come back tomorrow for more, or upgrade to keep going without interruptions.
+
+Upgrade
+You've used all your tokens.
+Switch to Pro for 33x more usage
+
+Clear
+Update
+
+Select
+
+Plan
+
+function App() {
+return (
+<div className="min-h-screen bg-gray-100 flex items-center justify-center">
+<p>Start prompting (or editing) to see magic happen :)</p>
+</div>
+);
+}
+
+export default App; The error "Translation failed. Please make sure the backend server is running on port 5000." indicates that your frontend cannot connect to the backend translation API.
+
+### Troubleshooting Steps:
+Confirm the Flask backend server is running:
+Run in terminal
+
+
+python3 backend/app.py
+and ensure no errors on startup.
+
+Verify the backend is listening on port 5000 (default Flask port).
+
+Check the frontend API call URLs point to http://localhost:5000/api/translate (or correct backend address).
+
+Make sure CORS is enabled on the backend to allow requests from your frontend origin.
+
+Open browser DevTools (F12) Network tab and check if the /api/translate request is sent and what response or error it shows.
+
+Review backend logs for incoming requests or errors.
+
+Confirm frontend and backend are running on the same machine or accessible over network.
+
+Following these steps will help you identify why the translation backend is not reachable or responding, then fix it accordingly.
