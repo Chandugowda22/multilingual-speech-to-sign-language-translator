@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Sign Communicator AI</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Global Sign Communicator AI</h1>
+            <p class="subtitle">Speak, Sign, Translate - Break Language Barriers</p>
+        </header>
+
+        <main>
+            <div class="avatar-section">
+                <div id="avatar-container">
+                    <div id="avatar-display">
+                        <div class="sign-animation" id="sign-animation">
+                            <div class="hand left-hand"></div>
+                            <div class="hand right-hand"></div>
+                            <div class="avatar-face">
+                                <div class="eye left-eye"></div>
+                                <div class="eye right-eye"></div>
+                                <div class="mouth"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sign-label" id="sign-label">Ready to communicate</div>
+                </div>
+            </div>
+
+            <div class="text-section">
+                <div class="text-box">
+                    <h3>Original Text (English)</h3>
+                    <div class="text-display" id="original-text">Your text will appear here...</div>
+                </div>
+                <div class="text-box translation-box">
+                    <h3>Translated Text</h3>
+                    <div class="text-display" id="translated-text">Translation will appear here...</div>
+                </div>
+            </div>
+
+            <div class="input-section">
+                <div class="input-group">
+                    <textarea 
+                        id="text-input" 
+                        placeholder="Type your message here or use the microphone..."
+                        rows="3"
+                    ></textarea>
+                    <div class="input-controls">
+                        <button id="mic-button" class="mic-btn" title="Click to speak">
+                            <span class="mic-icon">🎤</span>
+                        </button>
+                        <button id="clear-button" class="clear-btn">Clear</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="language-section">
+                <h3>Translate to:</h3>
+                <div class="language-grid" id="language-buttons">
+                </div>
+            </div>
+
+            <div class="status-section">
+                <div class="status-message" id="status-message"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Made with ❤ by Chandu Gowda</p>
+        </footer>
+    </div>
+
+    <audio id="audio-player" style="display: none;"></audio>
+    <script src="script.js"></script>
+</body>
+</html>
