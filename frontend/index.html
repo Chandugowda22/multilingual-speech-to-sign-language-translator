@@ -15,22 +15,66 @@
         </header>
 
         <main>
-            <div class="avatar-section">
-                <div id="avatar-container">
-                    <div id="avatar-display">
-                        <div class="sign-animation" id="sign-animation">
-                            <div class="hand left-hand"></div>
-                            <div class="hand right-hand"></div>
-                            <div class="avatar-face">
-                                <div class="eye left-eye"></div>
-                                <div class="eye right-eye"></div>
-                                <div class="mouth"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sign-label" id="sign-label">Ready to communicate</div>
-                </div>
+           <!-- ✅ MAIN GRID START -->
+<div class="main-grid">
+
+  <!-- LEFT SIDE : AVATAR -->
+  <div>
+    <div class="avatar-section">
+      <div id="avatar-container">
+        <div id="avatar-display">
+          <div class="sign-animation" id="sign-animation">
+            <div class="hand left-hand"></div>
+            <div class="hand right-hand"></div>
+            <div class="avatar-face">
+              <div class="eye left-eye"></div>
+              <div class="eye right-eye"></div>
+              <div class="mouth"></div>
             </div>
+          </div>
+        </div>
+
+        <video id="signVideo" width="350" height="250" autoplay muted playsinline
+          controls controlsList="nodownload noplaybackrate nofullscreen">
+        </video>
+
+        <div class="sign-label" id="sign-label">Ready to communicate</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT SIDE : GESTURE -->
+  <div class="camera-section">
+    <h3>Gesture Detection</h3>
+
+    <button id="open-webcam" class="webcam-btn">📷 Start Camera</button>
+
+    <div id="webcam-container" style="display:none;">
+      <div class="webcam-video-wrapper">
+        <video id="camera" autoplay playsinline></video>
+        <canvas id="output-canvas"></canvas>
+      </div>
+
+      <button id="gesture-button" class="mic-btn">Start Gesture Detection</button>
+      <button id="close-webcam" class="clear-btn">Close Webcam</button>
+    </div>
+
+    <div id="detected-sign">Waiting for hand sign...</div>
+  </div>
+
+</div>
+<!-- ✅ MAIN GRID END -->
+
+           
+
+
+            <!-- MediaPipe Scripts -->
+            <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+
+
 
             <div class="text-section">
                 <div class="text-box">
@@ -71,11 +115,11 @@
         </main>
 
         <footer>
-            <p>Made with ❤ by Chandu Gowda</p>
+            <p></p>
         </footer>
     </div>
 
     <audio id="audio-player" style="display: none;"></audio>
     <script src="script.js"></script>
 </body>
-</html>
+</html> 

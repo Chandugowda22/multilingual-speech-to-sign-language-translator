@@ -4,21 +4,39 @@
     box-sizing: border-box;
 }
 
+/* 🔥 Avatar-Based AI Background */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
-    padding: 20px;
+    padding: 30px;
+
+    background:
+        radial-gradient(circle at top left, #7f8cff, transparent 45%),
+        radial-gradient(circle at bottom right, #9f7aea, transparent 45%),
+        linear-gradient(135deg, #0f172a, #1e1b4b);
+
+    color: #e5e7eb;
 }
 
+
+/* 🔥 Fancy Avatar-Based Container */
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.95),
+        rgba(240,244,255,0.95)
+    );
+    backdrop-filter: blur(8px);
+    border-radius: 24px;
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.35),
+        inset 0 0 40px rgba(102,126,234,0.15);
     overflow: hidden;
+    border: 1px solid rgba(102,126,234,0.25);
 }
+
 
 header {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -285,39 +303,7 @@ main {
     text-align: center;
 }
 
-.language-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-}
 
-.language-btn {
-    padding: 15px 20px;
-    border: 2px solid #667eea;
-    border-radius: 10px;
-    background: white;
-    color: #667eea;
-    font-size: 1em;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-}
-
-.language-btn:hover {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-}
-
-.language-btn .sign-code {
-    font-size: 0.8em;
-    opacity: 0.8;
-}
 
 .status-section {
     margin-bottom: 20px;
@@ -374,11 +360,351 @@ footer {
         height: 250px;
     }
 
-    .language-grid {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    }
-
     main {
         padding: 20px;
     }
 }
+/* ✅ FIX: Language buttons in proper grid */
+.language-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 18px;
+    margin-top: 20px;
+}
+
+#signVideo {
+    display: none;
+    margin-top: 15px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+/* Highlight Translation and Pronunciation Text */
+#translated-text strong {
+    color: #ffde59;
+    font-weight: bold;
+}
+
+
+/* Wrapper that contains video + canvas */
+.webcam-video-wrapper {
+    margin-top: 10px;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;   /* clip edges nicely */
+}
+
+#camera {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+}
+
+/* Canvas exactly on top of the video */
+#output-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.webcam-btn {
+    padding: 10px 15px;
+    background: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+}
+
+#close-webcam {
+    margin-top: 10px;
+    width: 100%;
+}
+#detected-sign {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ffde59;          /* soft yellow, same as translation highlight */
+    text-align: center;
+} 
+.main-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.camera-section {
+  background: #1e1e2f;
+  color: white;
+  padding: 20px;
+  border-radius: 16px;
+}
+/* FORCE layout clarity */
+.text-section,
+.input-section,
+.language-section,
+.status-section {
+    max-width: 100%;
+}
+
+/* Make avatar + gesture visually separate */
+.main-grid > div {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+/* 🎥 Camera size control */
+.camera-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* center camera */
+}
+
+.webcam-video-wrapper {
+    width: 260px;          /* 👈 MEDIUM size */
+    height: 200px;
+    margin: 12px auto;
+}
+
+#camera,
+#output-canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* 🦜 Parrot Green Close Webcam Button */
+#close-webcam {
+    background: #32cd32;   /* parrot green */
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#close-webcam:hover {
+    background: #2eb82e;   /* slightly darker parrot green */
+}
+/* STEP 1: Fix button width (clean look) */
+.webcam-btn,
+#close-webcam {
+    width: 260px;        /* medium size */
+    margin: 12px auto;  /* center horizontally */
+    display: block;
+}
+/* STEP 3: Make gesture section visually clean */
+.camera-section h3 {
+    margin-bottom: 12px;
+    font-size: 1.1em;
+    color: #ffffff;
+}
+
+#detected-sign {
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+}
+/* STEP 4: Group camera + buttons visually */
+.camera-section .webcam-video-wrapper {
+    margin-bottom: 14px;
+}
+
+.camera-section button {
+    margin-bottom: 10px;
+}
+ 🔥 FINAL FIX: Dark AI Cards (No More White) */
+
+/* Headings inside dark cards */
+.text-box h3,
+.language-section h3 {
+    color: #a5b4fc;
+}
+
+/* Input text area dark */
+#text-input {
+    background: #020617;
+    color: #e5e7eb;
+    border: 1px solid rgba(99,102,241,0.4);
+}
+
+/* Placeholder color */
+#text-input::placeholder {
+    color: #9ca3af;
+}
+/* 🔥 FINAL UNIFY FIX: Remove remaining white areas */
+
+/* Make container fully dark */
+.container {
+    background: linear-gradient(180deg, #020617, #0f172a) !important;
+    border: 1px solid rgba(99,102,241,0.4);
+}
+
+/* Header dark AI look */
+header {
+    background: linear-gradient(135deg, #020617, #1e1b4b) !important;
+}
+
+/* Footer dark */
+footer {
+    background: #020617 !important;
+    color: #9ca3af;
+}
+
+/* Remove white text displays */
+.text-display {
+    background: #020617 !important;
+    color: #e5e7eb !important;
+}
+
+
+/* 🔥 Step 2: Subtle AI Glow Effect */
+.avatar-section,
+.text-section,
+.input-section,
+.language-section {
+    position: relative;
+}
+
+.avatar-section::after,
+.text-section::after,
+.input-section::after,
+.language-section::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 18px;
+    background: linear-gradient(
+        120deg,
+        rgba(99,102,241,0.15),
+        rgba(139,92,246,0.15),
+        rgba(99,102,241,0.15)
+    );
+    z-index: -1;
+    filter: blur(14px);
+}
+/* ✅ FINAL DARK THEME – SINGLE SOURCE */
+.text-box,
+.input-group,
+.language-section,
+.status-message,
+.text-display {
+    background: #020617;
+    color: #e5e7eb;
+    border-radius: 16px;
+    border: 1px solid rgba(99,102,241,0.35);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+}
+/* 🔥 STEP 2: Avatar Hero Glow */
+#avatar-display {
+    box-shadow:
+        0 0 0 1px rgba(99,102,241,0.35),
+        0 0 25px rgba(99,102,241,0.25),
+        0 0 50px rgba(139,92,246,0.18);
+    animation: avatarGlow 5s ease-in-out infinite;
+}
+
+
+@keyframes avatarGlow {
+    0% {
+        box-shadow:
+            0 0 0 1px rgba(99,102,241,0.3),
+            0 0 40px rgba(99,102,241,0.3),
+            0 0 80px rgba(139,92,246,0.2);
+    }
+    50% {
+        box-shadow:
+            0 0 0 1px rgba(139,92,246,0.6),
+            0 0 60px rgba(139,92,246,0.5),
+            0 0 120px rgba(99,102,241,0.35);
+    }
+    100% {
+        box-shadow:
+            0 0 0 1px rgba(99,102,241,0.3),
+            0 0 40px rgba(99,102,241,0.3),
+            0 0 80px rgba(139,92,246,0.2);
+    }
+}
+
+.mic-btn:hover,
+.webcam-btn:hover,
+.language-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow:
+        0 12px 30px rgba(139,92,246,0.45);
+}
+
+/* 🦜 Keep Close Webcam Parrot Green but premium */
+#close-webcam {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    box-shadow: 0 8px 20px rgba(34,197,94,0.35);
+}
+
+/* 🔥 Text polish */
+.text-box h3,
+.language-section h3,
+.sign-label {
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 12px rgba(99,102,241,0.35);
+}
+/* 🔴 LIVE indicator */
+.camera-section h3::after {
+    content: " ● LIVE";
+    color: #22c55e;
+    font-size: 0.75em;
+    margin-left: 8px;
+    animation: blink 1.4s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+/* 🔄 Translating pulse animation */
+
+
+@keyframes translatePulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(99,102,241,0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 18px rgba(99,102,241,0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(99,102,241,0);
+    }
+}
+/* ✅ FINAL – STABLE LANGUAGE BUTTON (STEP 1) */
+.language-btn {
+    padding: 16px 20px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #ffffff;
+    font-size: 1em;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.language-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(139,92,246,0.45);
+}
+
+.language-btn.translating {
+    pointer-events: none;
+    opacity: 0.85;
+}
+
