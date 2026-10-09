@@ -1,0 +1,10 @@
+﻿Flask==3.1.2
+flask-cors==6.0.2
+gTTS==2.5.4
+googletrans==4.0.0rc1
+pypinyin==0.55.0
+hangul-romanize==0.1.0
+indic-transliteration==2.3.75
+pykakasi==2.3.0
+cutlet==0.5.0
+jaconv==0.4.1
